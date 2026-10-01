@@ -232,6 +232,7 @@ notebooks/*.ipynb
 # --- Ignore the nested notebooks/docs/img folder and its images ---
 notebooks/docs/img/
 notebooks/docs/img/gain_eta_example*.png
+!notebooks/docs/img/read_me_example.png
 
 # --- Ignore top-level docs/img folder (the one under repo root) ---
 docs/img/
