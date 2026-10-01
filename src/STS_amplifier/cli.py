@@ -1,4 +1,5 @@
 import argparse
+import matplotlib.pyplot as plt
 
 from .plotting import plot_gain_eta_from_physical_params
 
@@ -8,7 +9,7 @@ def build_parser() -> argparse.ArgumentParser:
     sub = p.add_subparsers(dest="cmd", required=True)
 
     ge = sub.add_parser("gain-eta", help="Gain comparison + efficiency vs gain")
-
+    ge.add_argument("--no-show", action="store_true", help="Do not display the plot window")
     # common sim params (these can have defaults)
     ge.add_argument("--Delta", type=float, default=0.0)
     ge.add_argument("--kappa", type=float, default=300e6 * 2 * 3.141592653589793)
@@ -19,6 +20,20 @@ def build_parser() -> argparse.ArgumentParser:
     ge.add_argument("--n-levels", type=int, default=150)
     ge.add_argument("--npts", type=int, default=30)
     ge.add_argument("--figsize", type=float, nargs=2, default=(12, 5))
+
+    # NEW: saving
+    ge.add_argument(
+        "--save",
+        type=str,
+        default=None,
+        help="Save the figure to this path (e.g. docs/img/gain_eta_example.png). If omitted, nothing is saved.",
+    )
+    ge.add_argument(
+        "--dpi",
+        type=int,
+        default=200,
+        help="DPI for saved figure (only used with --save).",
+    )
 
     # STS physical params (required)
     ge.add_argument("--STS-EC", type=float, required=True)
@@ -52,8 +67,12 @@ def main(argv=None) -> int:
             JPA2_F=args.JPA2_F, JPA2_EC=args.JPA2_EC, JPA2_EJ=args.JPA2_EJ,
             JPA3_F=args.JPA3_F, JPA3_EC=args.JPA3_EC, JPA3_EJ=args.JPA3_EJ,
             figsize=tuple(args.figsize),
+            save_path=args.save,   # NEW (requires plotting.py change)
+            dpi=args.dpi,          # NEW
         )
-        fig.show()
+
+        # Show interactively (terminal usage)
+        plt.show()
         return 0
 
     raise RuntimeError(f"Unknown command: {args.cmd}")

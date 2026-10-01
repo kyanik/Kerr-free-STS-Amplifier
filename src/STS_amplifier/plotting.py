@@ -1,3 +1,4 @@
+import os
 import matplotlib.pyplot as plt
 
 from .core import _sweep_G_eta
@@ -13,9 +14,11 @@ def plot_gain_eta_from_physical_params(
     JPA2_F, JPA2_EC, JPA2_EJ,
     JPA3_F, JPA3_EC, JPA3_EJ,
     figsize=(12, 5),
+    save_path: str | None = None,   # NEW
+    dpi: int = 200,                 # NEW
 ):
     # These “params tuples” are now constructed from user input
-    parDPA = (0.0, 0.0, 0.0)          # ignored by DPA path
+    parDPA = (0.0, 0.0, 0.0)  # ignored by DPA path
     parSTS = (STS_EC, STS_EL)
     parJPA1 = (JPA1_F, JPA1_EC, JPA1_EJ)
     parJPA2 = (JPA2_F, JPA2_EC, JPA2_EJ)
@@ -47,7 +50,7 @@ def plot_gain_eta_from_physical_params(
     gain_curves.append(("JPA3", Gg_JPA3))
     eta_curves.append(("JPA3", G_eta_JPA3, eta_JPA3))
 
-    # Plotting: same behavior as your original function
+    # Plotting
     if gamma != 0.0:
         fig, ax1 = plt.subplots(figsize=(6, 4))
         ax2 = None
@@ -56,7 +59,6 @@ def plot_gain_eta_from_physical_params(
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=figsize)
         x = G_DPA
 
-    #x = G_x if gamma != 0.0 else G_DPA
     for label, y in gain_curves:
         ax1.plot(x, y, lw=2, label=label)
 
@@ -79,4 +81,10 @@ def plot_gain_eta_from_physical_params(
         ax2.legend()
 
     plt.tight_layout()
+
+    # NEW: optional save
+    if save_path is not None:
+        os.makedirs(os.path.dirname(save_path) or ".", exist_ok=True)
+        fig.savefig(save_path, dpi=dpi, bbox_inches="tight")
+
     return fig
