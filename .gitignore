@@ -221,3 +221,17 @@ __marimo__/
 
 # Visual Studio Code
 .vscode/
+
+# --- Notebooks: ignore all except the one we keep ---
+notebooks/*.ipynb
+!notebooks/G_eta_code_latest.ipynb
+
+# Always ignore Jupyter checkpoints
+**/.ipynb_checkpoints/
+
+# --- Ignore the nested notebooks/docs/img folder and its images ---
+notebooks/docs/img/
+notebooks/docs/img/gain_eta_example*.png
+
+# --- Ignore top-level docs/img folder (the one under repo root) ---
+docs/img/
