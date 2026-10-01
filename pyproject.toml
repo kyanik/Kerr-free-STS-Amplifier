@@ -23,6 +23,9 @@ dependencies = [
 dev = ["pytest", "ruff", "black", "ipykernel"]
 jax = ["jax", "jaxlib"]
 
+[project.scripts]
+STS-amplifier = "STS_amplifier.cli:main"
+
 [tool.setuptools]
 package-dir = {"" = "src"}
 
