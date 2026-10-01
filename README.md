@@ -130,7 +130,7 @@ fig = plot_gain_eta_from_physical_params(
 
 fig
 ```
-
+An example is given in nb_run_G_eff.ipynb in the `notebooks` folder, which can be run to generate the example plot.
 ---
 
 ## Example output
