@@ -41,6 +41,18 @@ def _solve_two_probes_and_get_g(H0, a, kappa, drive, phi, c_ops):
         a_in = 1j * eps / np.sqrt(kappa)  # bare kappa
         H_probe = eps * a.dag() + np.conj(eps) * a
         rho_ss = qt.steadystate(H0 + H_probe, c_ops)
+        # rho_ss = qt.steadystate(H0 + H_probe, c_ops, method="direct", solver="lgmres",
+        #                 rtol=1e-8, atol=0.0, maxiter=10000)
+        # rho_ss = qt.steadystate(
+        #     H0 + H_probe,
+        #     c_ops,
+        #     method="direct",
+        #     solver="bicgstab",
+        #     rtol=1e-6,
+        #     atol=0.0,
+        #     maxiter=50000,
+        # )
+        #rho_ss = qt.steadystate(H0 + H_probe, c_ops, method="direct")
         a_exp = qt.expect(a, rho_ss)
         a_out = np.sqrt(kappa) * a_exp + a_in  # bare kappa
         return a_out, a_in
@@ -177,20 +189,20 @@ def _lam_sweep(kappa, span_factor, npts):
 
 def _lam_conditions(kind, params, kappa, npts):
     if kind.upper() == "DPA":
-        lam_max = 1.93
+        lam_max = 1.9
         return _lam_sweep(kappa, lam_max, npts)
 
     elif kind.upper() == "JPA":
         ratio, Kerr, _zpf = extract_Kerr("JPA", params)
         if np.abs(Kerr / kappa) <= 0.01:
-            lam_max = 1.93
+            lam_max = 1.9
             return _lam_sweep(kappa, lam_max, npts)
-        lam_max1 = 1.93
-        lam_max2 = 3.93
+        lam_max1 = 1.9
+        lam_max2 = 3.9
         return _lam_sweep(kappa, lam_max1, npts), _lam_sweep(kappa, lam_max2, npts)
 
     elif kind.upper() == "STS":
-        lam_max = 1.93
+        lam_max = 1.9
         return _lam_sweep(kappa, lam_max, npts)
 
     else:
