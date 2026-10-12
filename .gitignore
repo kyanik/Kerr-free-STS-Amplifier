@@ -225,6 +225,7 @@ __marimo__/
 # --- Notebooks: ignore all except the one we keep ---
 notebooks/*.ipynb
 !notebooks/nb_run_G_eff.ipynb
+!notebooks/nb_run_ML_G_eta_hi_lo.ipynb
 
 # Always ignore Jupyter checkpoints
 **/.ipynb_checkpoints/
