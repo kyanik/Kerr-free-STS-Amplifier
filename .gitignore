@@ -236,3 +236,8 @@ notebooks/docs/img/gain_eta_example*.png
 
 # --- Ignore top-level docs/img folder (the one under repo root) ---
 docs/img/
+
+data/
+*.npz
+surrogate_artifacts/
+notebooks/data/
