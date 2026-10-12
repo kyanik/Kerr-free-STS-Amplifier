@@ -173,7 +173,7 @@ The notebook `nb_run_ML_G_eta_hi_lo.ipynb` contains code to train a neural netwo
 
 The example plot should look like below:
 
-![STS gain and efficiency comparison: Neural Network vs QuTiP](notebooks/docs/img/ML_STS_example.png)
+![STS gain and efficiency comparison: Neural Network vs QuTiP](docs/img/ML_STS_example.png)
 
 ---
 
