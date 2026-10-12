@@ -162,6 +162,20 @@ git push
 ```
 
 ---
+## Machine Learning: Training a neural network to predict the STS gain and efficiency
+
+For numerical simulations that require fast predictions, a neural network can be trained to predict the STS gain and efficiency given the physical parameters of the system. 
+
+The notebook `nb_run_ML_G_eta_hi_lo.ipynb` contains code to train a neural network using PyTorch. It is done for STS parameters with a high and low number of levels, and the trained model can be used to predict the gain and efficiency for new parameter sets. (Assumptions: $\Delta = 0$, $\gamma = 0$)
+---
+
+## Example output
+
+The example plot should look like below:
+
+![STS gain and efficiency comparison: Neural Network vs QuTiP](notebooks/docs/img/ML_STS_example.png)
+
+---
 
 ## Citation
 
