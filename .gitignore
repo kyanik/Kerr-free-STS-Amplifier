@@ -237,6 +237,7 @@ notebooks/docs/img/ML_STS_example*.png
 
 # --- Ignore top-level docs/img folder (the one under repo root) ---
 docs/img/
+!docs/img/ML_STS_example.png
 
 data/
 *.npz
