@@ -2,6 +2,8 @@
 
 This repository contains code to reproduce and explore the gain/efficiency plots associated with the paper:
 
+- Yanik, Kagan, et al. "Flux Pumped Kerr-Free Parametric Amplifier." arXiv preprint arXiv:2602.13563 (2026).
+
 - https://doi.org/10.48550/arXiv.2602.13563
 
 ## What this repository does
